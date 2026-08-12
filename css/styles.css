@@ -1,0 +1,85 @@
+:root {
+    --primary: #151a26;
+    --secondary: #223146;
+    --bg: #e6e6e6;
+    --container: #7f93b7;
+    --light: #ffffff;
+    --right: #81da8e;
+    --wrong: #da8181;
+}
+
+.header {
+    background-color: var(--primary);
+
+}
+
+main {
+    background-color: var(--bg);
+    flex: 1;
+}
+
+input,
+textarea,
+select {
+    border-radius: 8px;
+}
+
+input,
+select {
+    padding: 10px 3px;
+}
+
+.backdrop {
+    background-color: #0808085c;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(3px);
+}
+
+.modalForm {
+    width: 25vw;
+    height: auto;
+}
+
+html {
+    height: 100%;
+}
+
+.button {
+    background-color: var(--primary);
+}
+
+.task-container {
+    background-color: var(--bg);
+    flex: 1;
+}
+
+h1,
+h2,
+h3 {
+    color: #223146;
+}
+
+.fa-square-check {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+
+}
+
+.fa-pen {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+
+}
+
+.fa-trash-can {
+    width: 20px;
+    height: 20px;
+}
+.delete{
+    cursor: pointer;
+}
