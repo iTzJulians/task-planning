@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -48,7 +50,8 @@
                         </div>
                     </div>
                     <p class="text-secondary fs-5 d-flex align-items-center m-0">Categoria</p>
-                    <P class="fs-5 fw-normal d-flex align-items-center m-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos
+                    <P class="fs-5 fw-normal d-flex align-items-center m-0">Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Dignissimos
                         doloribus alias doloremque aliquid aperiam ratione fugit, recusandae accusantium assumenda porro
                         a cumque sint cum labore exercitationem molestiae et! Omnis, aspernatur.</P>
 
@@ -58,8 +61,10 @@
         </section>
     </main>
     <div class="backdrop d-flex justify-content-center align-items-center d-none" id="modal">
-        <form class="bg-light p-3 rounded-4 d-flex flex-column align-items-center justify-content-start modalForm">
-            <button class="px-3 align-self-end w-auto border border-0 bg-transparent fw-normal fs-4" id="closeModal" type="button">x</button>
+        <form class="bg-light p-3 rounded-4 d-flex flex-column align-items-center justify-content-start modalForm"
+            novalidate id="taskForm">
+            <button class="px-3 align-self-end w-auto border border-0 bg-transparent fw-normal fs-4" id="closeModal"
+                type="button">x</button>
             <div class=" d-flex flex-column gap-4 align-items-center justify-content-center px-5 w-100 ">
                 <h1>
                     Tarea
@@ -68,20 +73,26 @@
                     <label for="">
                         Nombre de la tarea
                     </label>
-                    <input type="text">
+                    <input type="text" name="Nombre de la tarea" id="nameInput" class="">
                 </div>
                 <div class="d-flex flex-column gap-1 w-100">
                     <label for="">
                         Descripcion de la tarea
                     </label>
-                    <textarea rows="4" name="" id=""></textarea>
+                    <textarea rows="4" name="Descripcion de la tarea" style="resize: none;" id="description"
+                        class=""></textarea>
                 </div>
 
                 <div class="d-flex flex-column gap-1 w-100">
                     <label for="">
                         Categoria
                     </label>
-                    <select name="" id="">
+                    <select name="Categoria" id="categoryInput" class="">
+                        <option value="" selected disabled>Selecciona una opcion</option>
+                        <option value="Estudio">Estudio</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Familiar">Familiar</option>
                     </select>
                 </div>
 
@@ -89,12 +100,12 @@
                     <label for="">
                         Fecha limite
                     </label>
-                    <select name="" id="">
+                    <input type="date" name="Fecha" id="dateInput" class="">
                     </select>
                 </div>
 
 
-                <button class="w-50 py-2 rounded-3 border-0 btn-" type="submit" class="">
+                <button class="w-50 py-2 rounded-3 border-0 btn-form fw-bolder " type="submit" class="">
                     Añadir
                 </button>
             </div>

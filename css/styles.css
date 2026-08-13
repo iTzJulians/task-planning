@@ -41,6 +41,7 @@ select {
 .modalForm {
     width: 25vw;
     height: auto;
+    background: ;
 }
 
 html {
@@ -82,4 +83,8 @@ h3 {
 }
 .delete{
     cursor: pointer;
+}
+.btn-form{
+    background-color: var(--secondary);
+    color: var(--light);
 }
