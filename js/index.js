@@ -1,7 +1,7 @@
 const modal = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
 const addTaskButton = document.getElementById("addTask");
-const taskManager = new TaskManager();
+const taskManager = new TaskManager(1);
 const completeTaskButton = document.getElementById("completeButton");
 const task = document.getElementById("task");
 console.log(completeTaskButton);
@@ -45,15 +45,11 @@ function validFormFieldInput(event) {
         Swal.fire("Error", "Ingresa una fecha", "error");
         return;
     }
+    taskManager.addTask(name,description, date, taskCategory,false);
     Swal.fire("Tarea añadida", "¡Tarea agregada con exito!", "succes");
     taskform.reset();
     console.log(`tarea: ${name} descripcion: ${description} categoria ${category} fecha ${date}`);
 
 
 }
-console.log(taskManager.task);
-completeTaskButton.addEventListener("click", () => {
-    completeTaskButton.classList.toggle("fa-regular");
-    completeTaskButton.classList.toggle("fa-solid");
-    task.classList.toggle("completed");
-});
+
