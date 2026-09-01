@@ -11,6 +11,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="js/index.js"></script>
 
 </head>
 
@@ -33,34 +34,8 @@
                 </button>
             </div>
             <div class="task-container w-100 rounded-3 p-2 d-flex flex-column gap-2">
-                <div class="task d-flex flex-column bg-body p-3 rounded-3 h-auto gap-2"id="task">
-                    <div class=" d-flex flex-row justify-content-between align-items-center">
-
-                        <div class="d-flex flex-row gap-2 align-items-center justify-content-center">
-                            <!-- <i class="fa-solid fa-square-check" style="color: #82db8f;"></i> -->
-                             <i class="fa-regular fa-square-check" style="color: #82db8f;" id="completeButton"></i>  
-
-                            <h3 class="fw-bolder m-0">
-                                Nombre de la tarea
-                            </h3>
-                            <i class="fa-solid fa-pen" style="color: #223146;"></i>
-                        </div>
-                        <p class="text-secondary m-0">
-                            2026-08-1
-                        </p>
-                        <div class="bg-danger rounded-3 p-3 d-flex justify-content-center align-items-center delete">
-                            <i class="fa-regular fa-trash-can" style="color: rgb(255, 255, 255);"></i>
-                        </div>
-                    </div>
-                    <p class="text-secondary fs-5 d-flex align-items-center m-0">Categoria</p>
-                    <P class="fs-5 fw-normal d-flex align-items-center m-0">Lorem ipsum dolor, sit amet consectetur
-                        adipisicing elit. Dignissimos
-                        doloribus alias doloremque aliquid aperiam ratione fugit, recusandae accusantium assumenda porro
-                        a cumque sint cum labore exercitationem molestiae et! Omnis, aspernatur.</P>
-
-
-
-                </div>
+                <!-- tarea -->
+                
         </section>
     </main>
     <div class="backdrop d-flex justify-content-center align-items-center d-none" id="modal">
@@ -115,9 +90,6 @@
 
         </form>
     </div>
-    <!-- <script src="https://kit.fontawesome.com/495eba3641.js" crossorigin="anonymous"></script>} -->
-    <script src="js/taskManager.js"></script>
-    <script src="js/index.js"></script>
 </body>
 
 </html>

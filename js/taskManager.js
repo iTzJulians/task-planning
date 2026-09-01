@@ -16,7 +16,8 @@ class TaskManager {
             }
         );
         this.currentId++;
-        console.log(taskManager.tasks);
-
+        console.log(this.tasks);
     }
 }
+
+export {TaskManager};
