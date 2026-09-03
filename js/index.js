@@ -1,20 +1,8 @@
 import { TaskManager } from './taskManager.js';
+import './modal.js';
 
-const modal = document.getElementById("modal");
-const closeModal = document.getElementById("closeModal");
-const addTaskButton = document.getElementById("addTask");
-const taskManager = new TaskManager(1);
+const taskManager = new TaskManager();
 const taskContainer = document.querySelector(".task-container");
-
-
-addTaskButton.addEventListener("click", () => {
-    modal.classList.remove("d-none")
-
-})
-closeModal.addEventListener("click", () => {
-    modal.classList.add("d-none")
-
-});
 const taskform = document.getElementById("taskForm");
 taskform.addEventListener("submit", (e) => validFormFieldInput(e));
 
@@ -37,7 +25,7 @@ function validFormFieldInput(event) {
         Swal.fire("Error", "Ingresa una descripcion", "error");
         return;
     }
-    if (taskCategory === "") {
+    if (category === "") {
         Swal.fire("Error", "Selecciona una categoria", "error");
         return;
     }
@@ -45,14 +33,15 @@ function validFormFieldInput(event) {
         Swal.fire("Error", "Ingresa una fecha", "error");
         return;
     }
-    const task = taskManager.addTask(name, description, date, taskCategory, false);
+    taskManager.addTask(name, description, date, category, false);
 
+    Swal.fire("Tarea añadida", "¡Tarea agregada con exito!", "success");
     RenderTasks();
-    Swal.fire("Tarea añadida", "¡Tarea agregada con exito!", "succes");
     taskform.reset();
-    console.log(`tarea: ${name} descripcion: ${description} categoria ${category} fecha ${date}`);
 
 }
+
+
 
 function RenderTasks() {
     taskContainer.innerHTML = ""
@@ -84,13 +73,26 @@ function RenderTasks() {
             <P class="fs-5 fw-normal d-flex align-items-center m-0">
                 ${task.description}
             </P>`;
-        const completeTaskButton = document.getElementById("completeButton");
+        taskElement.dataset.id = task.id;
+
+
         taskContainer.appendChild(taskElement);
-        completeTaskButton.addEventListener("click", () => {
-            completeTaskButton.classList.toggle("fa-regular");
-            completeTaskButton.classList.toggle("fa-solid");
-            task.classList.toggle("completed");
-        });
     })
+    
 }
 RenderTasks();
+
+taskContainer.addEventListener("click", (event) => {
+
+        if (event.target.getAttribute("id") === "completeButton") {
+            event.target.classList.toggle("fa-regular");
+            event.target.classList.toggle("fa-solid");
+            event.target.parentNode.parentNode.parentNode.classList.toggle("completed");
+        }
+        if (event.target.classList.contains("delete")) {
+            taskManager.removeTask(event.target.closest(".task").dataset.id);
+            
+            RenderTasks();
+        }
+    });
+
