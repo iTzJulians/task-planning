@@ -42,6 +42,17 @@ class TaskManager {
             }
         });
     }
+    getTaskById(taskId) {
+        taskId = Number(taskId);
+        return this.tasks.find(task => task.id === taskId)
+    }
+    markAsDone(task) {
+        if (task) {
+            task.status = !task.status;
+        }
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
+
+    }
 }
 
 export { TaskManager };
