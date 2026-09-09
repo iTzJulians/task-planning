@@ -1,15 +1,17 @@
 "use strict2"
 import { TaskManager } from './taskManager.js';
 import './modal.js';
-const taskManager = new TaskManager();
 const taskContainer = document.querySelector(".task-container");
-const taskform = document.getElementById("taskForm");
+const taskManager = new TaskManager(taskContainer);
 taskManager.load();
-taskManager.renderTasks(taskContainer);
+taskManager.renderTasks();
+const taskform = document.getElementById("taskForm");
+
 taskform.addEventListener("submit", (e) => validFormFieldInput(e));
 taskContainer.addEventListener("click", (event) => {
 
     const doneButton = event.target;
+    const deleteButton = event.target.closest(".delete");
     if (doneButton.getAttribute("id") === "completeButton") {
         const taskElement = doneButton.closest(".task");
         const taskId = doneButton.closest(".task").dataset.id;
@@ -19,7 +21,7 @@ taskContainer.addEventListener("click", (event) => {
         doneButton.classList.toggle("fa-solid", task.status);
         doneButton.classList.toggle("fa-regular", !task.status);
     }
-    if (event.target.closest(".delete")) {
+    if (deleteButton) {
 
         taskManager.removeTask(event.target.closest(".task").dataset.id);
         taskManager.renderTasks();
@@ -56,8 +58,8 @@ function validFormFieldInput(event) {
     taskManager.addTask(name, description, date, category, false);
 
     Swal.fire("Tarea añadida", "¡Tarea agregada con exito!", "success");
-    taskManager.renderTasks();
     taskform.reset();
+    taskManager.renderTasks();
 
 }
 

@@ -1,8 +1,10 @@
+
 class TaskManager {
-    constructor() {
+    constructor(taskContainer) {
 
         this.tasks = [];
         this.currentId = 1;
+        this.taskContainer = taskContainer;
 
     }
 
@@ -28,6 +30,7 @@ class TaskManager {
             if (task.id === taskId) {
                 this.tasks.pop(task);
                 this.save();
+                
                 return;
             }
         });
@@ -54,11 +57,12 @@ class TaskManager {
         }
         if (currentId) {
             this.currentId = Number(currentId);
-            ;
+            
         }
     }
-    renderTasks(taskContainer) {
-        taskContainer.innerHTML = ""
+    renderTasks() {
+
+        this.taskContainer.innerHTML = ""
         this.tasks.forEach(task => {
             const taskElement = document.createElement("div");
 
@@ -93,7 +97,7 @@ class TaskManager {
         ${task.description}
         </P>`;
             taskElement.dataset.id = task.id;
-            taskContainer.appendChild(taskElement);
+            this.taskContainer.appendChild(taskElement);
         })
     }
 }
