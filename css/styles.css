@@ -39,9 +39,8 @@ select {
 }
 
 .modalForm {
-    width: 25vw;
     height: auto;
-    background: ;
+    max-width: 420px;
 }
 
 html {

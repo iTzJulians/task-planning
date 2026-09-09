@@ -1,25 +1,31 @@
+"use strict2"
 import { TaskManager } from './taskManager.js';
 import './modal.js';
-
 const taskManager = new TaskManager();
 const taskContainer = document.querySelector(".task-container");
 const taskform = document.getElementById("taskForm");
+taskManager.load();
+taskManager.renderTasks(taskContainer);
 taskform.addEventListener("submit", (e) => validFormFieldInput(e));
 taskContainer.addEventListener("click", (event) => {
 
-    if (event.target.getAttribute("id") === "completeButton") {
-        const taskId = event.target.closest(".task").dataset.id;
+    const doneButton = event.target;
+    if (doneButton.getAttribute("id") === "completeButton") {
+        const taskElement = doneButton.closest(".task");
+        const taskId = doneButton.closest(".task").dataset.id;
         const task = taskManager.getTaskById(taskId);
-
         taskManager.markAsDone(task);
-        RenderTasks();
+        taskElement.classList.toggle('completed', task.status);
+        doneButton.classList.toggle("fa-solid", task.status);
+        doneButton.classList.toggle("fa-regular", !task.status);
     }
     if (event.target.closest(".delete")) {
-        taskManager.removeTask(event.target.closest(".task").dataset.id);
 
-        RenderTasks();
+        taskManager.removeTask(event.target.closest(".task").dataset.id);
+        taskManager.renderTasks();
     }
 });
+
 function validFormFieldInput(event) {
     event.preventDefault()
     const taskName = document.getElementById("nameInput");
@@ -50,56 +56,14 @@ function validFormFieldInput(event) {
     taskManager.addTask(name, description, date, category, false);
 
     Swal.fire("Tarea añadida", "¡Tarea agregada con exito!", "success");
-    RenderTasks();
+    taskManager.renderTasks();
     taskform.reset();
 
 }
 
 
 
-function RenderTasks() {
-    taskContainer.innerHTML = ""
-    taskManager.tasks.forEach(task => {
-        const taskElement = document.createElement("div");
 
-        taskElement.classList.add('task', 'd-flex', 'flex-column', 'bg-body', 'p-3', 'rounded-3', 'h-auto', 'gap-2')
-
-        
-        
-        taskElement.innerHTML =
-        `
-        <div class=" d-flex flex-row justify-content-between align-items-center">
-        <div class="d-flex flex-row gap-2 align-items-center justify-content-center">
-        <!-- <i class="fa-solid fa-square-check" style="color: #82db8f;"></i> -->
-        <i class="${task.status ? "fa-solid" : "fa-regular"} fa-square-check" style="color: #82db8f;" id="completeButton"></i>
-        
-        <h3 class="fw-bolder m-0">
-        ${task.name}
-        </h3>
-        <i class="fa-solid fa-pen" style="color: #223146;"></i>
-        </div>
-        <p class="text-secondary m-0">
-        ${task.date}
-        </p>
-        <div class="bg-danger rounded-3 p-3 d-flex justify-content-center align-items-center delete">
-        <i class="fa-regular fa-trash-can" style="color: rgb(255, 255, 255);"></i>
-        </div>
-        </div>
-        <p class="text-secondary fs-5 d-flex align-items-center m-0">
-        ${task.category}
-        </p>
-        <P class="fs-5 fw-normal d-flex align-items-center m-0">
-        ${task.description}
-        </P>`;
-        taskElement.dataset.id = task.id;
-        
-        
-        taskContainer.appendChild(taskElement);
-        taskElement.classList.toggle('completed', task.status);
-    })
-    
-}
-RenderTasks();
 
 
 
